@@ -43,8 +43,6 @@ public class DepartmentController {
             return new ModelAndView(model, "templates/layout.vtl");
         }, new VelocityTemplateEngine());
 
-
-
         post("/departments", (req, res) -> {
             String title = req.queryParams("title");
 
@@ -56,6 +54,56 @@ public class DepartmentController {
             return null;
 
         }, new VelocityTemplateEngine());
+
+
+
+        get("/departments/:id/edit", (req, res) -> {
+
+            HashMap<String, Object> model = new HashMap<>();
+
+            int departmentId = Integer.valueOf(req.params(":id"));
+            Department department = DBHelper.find(departmentId, Department.class);
+            model.put("department", department);
+
+            model.put("template", "templates/departments/edit.vtl");
+            return new ModelAndView(model, "templates/layout.vtl");
+
+        }, new VelocityTemplateEngine());
+
+        post("/departments/:id", (req, res) -> {
+
+            Department newDeparment = new Department();
+
+            int Id = Integer.valueOf(req.params(":id"));
+
+            String title = req.queryParams("title");
+
+            newDeparment.setId(Id);
+            newDeparment.setTitle(title);
+
+            DBHelper.save(newDeparment);
+
+            res.redirect("/departments");
+            return null;
+
+        }, new VelocityTemplateEngine());
+
+
+
+
+        post("departments/:id/delete", (req, res) -> {
+
+            int departmentId = Integer.valueOf(req.params(":id"));
+            Department department = DBHelper.find(departmentId, Department.class);
+
+
+            DBHelper.delete(department);
+
+            res.redirect("/departments");
+            return null;
+
+        }, new VelocityTemplateEngine());
+
 
     }
 }

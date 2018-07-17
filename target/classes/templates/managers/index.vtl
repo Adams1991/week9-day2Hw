@@ -24,12 +24,13 @@
             <td>$manager.getDepartment().getTitle()</td>
             <td>$manager.getBudget()</td>
             <td><a href="/managers/$manager.getId()/edit" class="button center">Update</a></td>
-            <td><form action="/managers/$manager.getId()" method="post"><input type="submit" value="Delete"></form></td>
+            <td><form action="/managers/$manager.getId()/delete" method="post"><input type="submit" value="Delete"></form></td>
 
         </tr>
         #end
 
     </table>
+
 
 
 
