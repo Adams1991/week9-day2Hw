@@ -15,28 +15,26 @@ import static spark.Spark.get;
 
 public class EmployeesController {
 
-    public static void main(String[] args) {
+    public EmployeesController() {
+        this.setupEndPoints();
+    }
 
-        Seeds.seedData();
-        DepartmentController departmentController = new DepartmentController();
-        ManagersController managersController = new ManagersController();
-        EngineerController engineerController= new EngineerController();
+    private void setupEndPoints() {
 
 
-        get("/employees", (req,res) -> {
+        get("/employees", (req, res) -> {
             Map<String, Object> model = new HashMap();
             model.put("template", "templates/employees/index.vtl");
 
-            List<Employee> employees =DBHelper.getAll(Employee.class);
+            List<Employee> employees = DBHelper.getAll(Employee.class);
             model.put("employees", employees);
 
             return new ModelAndView(model, "templates/layout.vtl");
 
-        },  new VelocityTemplateEngine());
-
-
-
+        }, new VelocityTemplateEngine());
 
     }
+
+
 
 }
