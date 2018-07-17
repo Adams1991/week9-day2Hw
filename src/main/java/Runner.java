@@ -4,6 +4,8 @@ import models.Employee;
 import models.Engineer;
 import models.Manager;
 
+import java.util.List;
+
 public class Runner {
 
     public static void main(String[] args) {
@@ -26,5 +28,6 @@ public class Runner {
 
         Engineer found = DBHelper.find(engineer1.getId(), Engineer.class);
         Manager foundManager = DBHelper.findManagerForDept(department1);
+        List<Engineer> foundEngineer = DBHelper.findEngineerForDept(department1);
     }
 }

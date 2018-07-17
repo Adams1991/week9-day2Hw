@@ -1,6 +1,8 @@
 package db;
 
 import models.Department;
+import models.Employee;
+import models.Engineer;
 import models.Manager;
 import org.hibernate.*;
 import org.hibernate.criterion.Restrictions;
@@ -124,5 +126,12 @@ public class DBHelper {
         Criteria cr = session.createCriteria(Manager.class);
         cr.add(Restrictions.eq("department", department));
         return (Manager) cr.uniqueResult();
+    }
+
+    public static List<Engineer> findEngineerForDept(Department department) {
+        session = HibernateUtil.getSessionFactory().openSession();
+        Criteria cr = session.createCriteria(Engineer.class);
+        cr.add(Restrictions.eq("department", department));
+        return cr.list();
     }
 }
