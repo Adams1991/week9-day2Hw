@@ -20,6 +20,7 @@ public class EmployeesController {
         Seeds.seedData();
         DepartmentController departmentController = new DepartmentController();
         ManagersController managersController = new ManagersController();
+        EngineerController engineerController= new EngineerController();
 
 
         get("/employees", (req,res) -> {
