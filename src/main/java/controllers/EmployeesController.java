@@ -18,7 +18,9 @@ public class EmployeesController {
     public static void main(String[] args) {
 
         Seeds.seedData();
+        DepartmentController departmentController = new DepartmentController();
         ManagersController managersController = new ManagersController();
+
 
         get("/employees", (req,res) -> {
             Map<String, Object> model = new HashMap();
