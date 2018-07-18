@@ -3,6 +3,7 @@ package controllers;
 import db.DBHelper;
 import models.Department;
 import models.Employee;
+import models.Engineer;
 import models.Manager;
 import spark.ModelAndView;
 import spark.template.velocity.VelocityTemplateEngine;
@@ -29,6 +30,13 @@ public class DepartmentController {
 
             List<Department> departments = DBHelper.getAll(Department.class);
             model.put("departments", departments);
+
+            List<Engineer> engineers = DBHelper.getAll(Engineer.class);
+            model.put("engineers", engineers);
+
+
+            List<Manager> managers = DBHelper.getAll(Manager.class);
+            model.put("managers", managers);
 
             return new ModelAndView(model, "templates/layout.vtl");
 

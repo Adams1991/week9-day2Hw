@@ -13,18 +13,24 @@
             <th>Last Name</th>
             <th>Salary</th>
             <th>Department</th>
+            <th>Manager</th>
         </tr>
 
         #foreach($engineer in $engineers)
+        #foreach($manager in $managers)
         <tr>
             <td>$engineer.getFirstName()</td>
             <td>$engineer.getLastName()</td>
             <td>$engineer.getSalary()</td>
             <td>$engineer.getDepartment().getTitle()</td>
+            <td>#if ($manager.getDepartment().getTitle == $engineer.getDepartment().getTitle)
+                $manager.getFirstName() $manager.getLastName()
+                #end </td>
             <td><a href="/engineers/$engineer.getId()/edit" class="button center">Update</a></td>
             <td><form action="/engineers/$engineer.getId()/delete" method="post"><input type="submit" value="Delete"></form></td>
 
         </tr>
+        #end
         #end
 
     </table>
