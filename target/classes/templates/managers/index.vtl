@@ -14,8 +14,10 @@
             <th>Salary</th>
             <th>Department</th>
             <th>Budget</th>
+            <th>Employees</th>
         </tr>
 
+        #foreach($engineer in $engineers)
         #foreach($manager in $managers)
         <tr>
             <td>$manager.getFirstName()</td>
@@ -23,10 +25,16 @@
             <td>$manager.getSalary()</td>
             <td>$manager.getDepartment().getTitle()</td>
             <td>$manager.getBudget()</td>
+            #if ($manager.getDepartment().getTitle() == $engineer.getDepartment().getTitle())
+            <td>$engineer.getFirstName() $engineer.getLastName()</td>
+            #else
+            <td>No Employees</td>
+            #end
             <td><a href="/managers/$manager.getId()/edit" class="button center">Update</a></td>
             <td><form action="/managers/$manager.getId()/delete" method="post"><input type="submit" value="Delete"></form></td>
 
         </tr>
+        #end
         #end
 
     </table>

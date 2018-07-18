@@ -16,6 +16,7 @@
             <th>Budget</th>
         </tr>
 
+        #foreach($engineer in $engineers)
         #foreach($manager in $managers)
         <tr>
             <td>$manager.getFirstName()</td>
@@ -27,6 +28,7 @@
             <td><form action="/managers/$manager.getId()/delete" method="post"><input type="submit" value="Delete"></form></td>
 
         </tr>
+        #end
         #end
 
     </table>
