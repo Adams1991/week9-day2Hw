@@ -23,9 +23,11 @@
             <td>$engineer.getLastName()</td>
             <td>$engineer.getSalary()</td>
             <td>$engineer.getDepartment().getTitle()</td>
-            <td>#if ($manager.getDepartment().getTitle == $engineer.getDepartment().getTitle)
-                $manager.getFirstName() $manager.getLastName()
-                #end </td>
+            #if ($manager.getDepartment().getTitle() == $engineer.getDepartment().getTitle())
+            <td>$manager.getFirstName() $manager.getLastName()</td>
+            #else
+            <td>No Manager</td>
+            #end
             <td><a href="/engineers/$engineer.getId()/edit" class="button center">Update</a></td>
             <td><form action="/engineers/$engineer.getId()/delete" method="post"><input type="submit" value="Delete"></form></td>
 
